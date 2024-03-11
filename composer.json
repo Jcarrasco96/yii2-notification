@@ -1,0 +1,21 @@
+{
+    "name": "jcarrasco96/yii2-notification",
+    "description": "Notification EZ",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","notification"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "jcarrasco96",
+            "email": "jcarrasco96joker@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "jcarrasco96\\notification\\": ""
+        }
+    }
+}
