@@ -1,10 +1,3 @@
-$(document).on("click.bs.dropdown", "#dropNotifications", function (e) {
-    if (e.target.tagName !== 'A') {
-        e.stopPropagation();
-        e.preventDefault();
-    }
-});
-
 $(document).on("shown.bs.dropdown", "#testdropd", function () {
     const dropdown = $('#dropNotifications');
 
@@ -19,7 +12,7 @@ $(document).on("shown.bs.dropdown", "#testdropd", function () {
         },
         error: function () {
             dropdown.empty();
-            dropdown.append('<li class="list-group-item text-center">Ocurrió un error al intentar comunicarse con el servidor.<br>Reintente en un momento o póngase en contacto con el administrador.</li>');
+            dropdown.append('<p class="list-group-item text-center">Ocurrió un error al intentar comunicarse con el servidor.<br>Reintente en un momento o póngase en contacto con el administrador.</p>');
         }
     });
 });
@@ -222,10 +215,10 @@ function updateCount(count) {
     let selectorNotificationUnread = $('.notification-unread');
 
     if (count === 0) {
-        $('#notif-header').html('No have new notifications');
+        $('#notif-header').html('<p>No have new notifications</p>');
         selectorNotificationUnread.hide();
     } else {
-        $('#notif-header').html('You have ' + count + ' notifications unread');
+        $('#notif-header').html('<p>You have ' + count + ' notifications unread</p>');
         selectorNotificationUnread.show();
     }
     selectorNotificationUnread.text(count);

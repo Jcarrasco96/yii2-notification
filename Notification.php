@@ -7,6 +7,8 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use app\models\User;
+use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "notification".
@@ -88,6 +90,17 @@ class Notification extends ActiveRecord
             Constants::NOTIFICATION_TYPE_WARNING => ['icon' => 'bi-exclamation-triangle', 'color' => 'text-warning'],
             Constants::NOTIFICATION_TYPE_DANGER => ['icon' => 'bi-exclamation-circle', 'color' => 'text-danger'],
         };
+    }
+
+    public static function widget(): string
+    {
+        $count = self::find()->where([
+            'user_to' => Yii::$app->user->identity->id,
+            'seen'    => 0,
+        ])->count();
+        $style = $count == 0 ? 'display: none' : '';
+
+        return '<li class="dropdown nav-item" id="testdropd" data-url="' . Url::to(['/notification/show-all']) . '"><a href="#" class="nav-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="bi bi-bell-fill"></i><span class="notification-unread" style="' . $style . '">' . $count . '</span></a><ul id="dropNotifications" class="dropdown-menu dropdown-menu-end" style="width: 420px;"></ul></li>';
     }
     
 }
