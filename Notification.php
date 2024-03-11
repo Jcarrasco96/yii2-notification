@@ -102,5 +102,22 @@ class Notification extends ActiveRecord
 
         return '<li class="dropdown nav-item" id="testdropd" data-url="' . Url::to(['/notification/show-all']) . '"><a href="#" class="nav-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><i class="bi bi-bell-fill"></i><span class="notification-unread" style="' . $style . '">' . $count . '</span></a><ul id="dropNotifications" class="dropdown-menu dropdown-menu-end" style="width: 420px;"></ul></li>';
     }
+
+    public static function create(string $content, int $user_to, int $type = Constants::NOTIFICATION_TYPE_SUCCESS): void
+    {
+        /* @var $user User */
+        $user = User::find()->where(['id' => $user_to, 'notify_app' => 1])->one();
+
+        if (empty($user) || empty($content)) {
+            return;
+        }
+
+        $model = new Notification();
+        $model->content = $content;
+        $model->user_to = $user_to;
+        $model->type = $type;
+        $model->seen = 0;
+        $model->save();
+    }
     
 }
