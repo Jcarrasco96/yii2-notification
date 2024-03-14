@@ -177,7 +177,7 @@ function makeNotifications(data) {
 
     html += '<li id="notif-footer" class="list-group-item d-flex justify-content-end align-items-center" style="padding: 0.5rem 0.5rem; min-height: 3rem;">';
     html += '<button class="btn btn-secondary btn-sm mark-all-read"><i class="bi bi-check2-all"></i> Mark all as read</button>';
-    html += '<button class="ml-2 btn btn-danger btn-sm del-all-notif"><i class="bi bi-trash-fill"></i> Delete all</button>';
+    html += '<button class="ms-2 btn btn-danger btn-sm del-all-notif"><i class="bi bi-trash-fill"></i> Delete all</button>';
     html += '</li>';
 
     dropdown.append(html);
@@ -194,9 +194,9 @@ function makeNotifications(data) {
 }
 
 function makeItemNotification(id, content, date, icon, mark, type) {
-    let html = '<div class="media py-2">';
+    let html = '<div class="d-flex py-2">';
     html += '<i class="' + type.icon + ' display-5 mr-1 ' + type.color + '"></i>';
-    html += '<div class="media-body px-2">';
+    html += '<div class="flex-grow-1 px-2">';
     html += '<p class="mb-2 text-justify text-break" style="line-height: 1.1;">' + content + '</p>';
     html += '<div class="d-flex justify-content-between align-items-center">';
     html += '<small class="text-muted font-weight-light"><i class="bi bi-clock"></i> ' + date + '</small>';
@@ -215,10 +215,10 @@ function updateCount(count) {
     let selectorNotificationUnread = $('.notification-unread');
 
     if (count === 0) {
-        $('#notif-header').html('<p>No have new notifications</p>');
+        $('#notif-header').html('<p class="mb-0">No have new notifications</p>');
         selectorNotificationUnread.hide();
     } else {
-        $('#notif-header').html('<p>You have ' + count + ' notifications unread</p>');
+        $('#notif-header').html('<p class="mb-0">You have ' + count + ' notifications unread</p>');
         selectorNotificationUnread.show();
     }
     selectorNotificationUnread.text(count);

@@ -11,8 +11,5 @@ class NotificationAsset extends AssetBundle
     public $js = [
         'js/notification.js',
     ];
-//    public $depends = [
-//        'yii\web\JqueryAsset',
-//    ];
 
 }

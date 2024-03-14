@@ -9,6 +9,7 @@ use yii\db\Expression;
 use app\models\User;
 use Yii;
 use yii\helpers\Url;
+use yii\web\View;
 
 /**
  * This is the model class for table "notification".
@@ -92,8 +93,14 @@ class Notification extends ActiveRecord
         };
     }
 
-    public static function widget(): string
+    public static function widget(View $view): string
     {
+        $view->registerJsVar('urlSeeNotification', Url::to(['/notification/see']));
+        $view->registerJsVar('urlDelNotification', Url::to(['/notification/delete']));
+        $view->registerJsVar('urlMarkAllRedNotification', Url::to(['/notification/mark-all-read']));
+        $view->registerJsVar('urlDelAllNotification', Url::to(['/notification/delete-all']));
+        $view->registerJsVar('urlUnreadNotifications', Url::to(['/notification/unread']));
+
         $count = self::find()->where([
             'user_to' => Yii::$app->user->identity->id,
             'seen'    => 0,
