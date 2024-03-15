@@ -88,7 +88,7 @@ class NotificationController extends Controller
 
         return $this->asJson([
             'count' => $this->notificationsUnread(),
-            'message' => Yii::t('oqcheck', 'Notification deleted!'),
+            'message' => 'Notification deleted!',
         ]);
     }
 
